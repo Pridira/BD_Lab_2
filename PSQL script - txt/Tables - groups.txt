@@ -1,0 +1,18 @@
+-- Table: public.groups
+
+-- DROP TABLE IF EXISTS public.groups;
+
+CREATE TABLE IF NOT EXISTS public.groups
+(
+    "GroupID" bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
+    "GroupName" character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT groups_pkey PRIMARY KEY ("GroupID")
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.groups
+    OWNER to postgres;
+
+COMMENT ON TABLE public.groups
+    IS 'Таблица подразделений предприятия';

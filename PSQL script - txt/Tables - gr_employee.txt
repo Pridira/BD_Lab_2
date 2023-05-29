@@ -1,0 +1,29 @@
+-- Table: public.gr_employee
+
+-- DROP TABLE IF EXISTS public.gr_employee;
+
+CREATE TABLE IF NOT EXISTS public.gr_employee
+(
+    "GroupID" bigint,
+    "EmpID" bigint,
+    id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
+    CONSTRAINT gr_employee_pkey PRIMARY KEY (id),
+    CONSTRAINT employees_fkey FOREIGN KEY ("EmpID")
+        REFERENCES public.employees ("EmpID") MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID,
+    CONSTRAINT groups_fkey FOREIGN KEY ("GroupID")
+        REFERENCES public.groups ("GroupID") MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.gr_employee
+    OWNER to postgres;
+
+COMMENT ON TABLE public.gr_employee
+    IS 'Привязка таблицы сотрудников к таблице подразделения';

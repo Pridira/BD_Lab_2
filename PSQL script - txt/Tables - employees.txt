@@ -1,0 +1,21 @@
+-- Table: public.employees
+
+-- DROP TABLE IF EXISTS public.employees;
+
+CREATE TABLE IF NOT EXISTS public.employees
+(
+    "EmpID" bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
+    "EmpFN" character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    "EmpLN" character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    "EmpPost" character varying(50) COLLATE pg_catalog."default",
+    CONSTRAINT employees_pkey PRIMARY KEY ("EmpID")
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.employees
+    OWNER to postgres;
+
+COMMENT ON TABLE public.employees
+    IS 'Таблица сотрудников
+Имя - Фамилия - Должность';
